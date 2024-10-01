@@ -141,7 +141,7 @@ class login_signup_form extends moodleform implements renderable, templatable {
             $recaptchaelement = $this->_form->getElement('recaptcha_element');
             if (!empty($this->_form->_submitValues['g-recaptcha-response'])) {
                 $response = $this->_form->_submitValues['g-recaptcha-response'];
-                if (!$recaptchaelement->verify($response)) {
+                if ($recaptchaelement->verify($response) !== true) {
                     $errors['recaptcha_element'] = get_string('incorrectpleasetryagain', 'auth');
                 }
             } else {
